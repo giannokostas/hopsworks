@@ -363,7 +363,7 @@ public Response Heuristics(JobDetailDTO jobDetailDTO,
         while(itr.hasNext()) {
             JobHeuristicDetailsDTO obj = itr.next();
          
-            if(obj.getTotalSeverity().equals("LOW") && ((obj.getAmMemory()* obj.getAmVcores() <= defaultAmMemory * defaultAmVcores) &&
+            if((obj.getTotalSeverity().equals("LOW") || obj.getTotalSeverity().equals("NONE")) && ((obj.getAmMemory()* obj.getAmVcores() <= defaultAmMemory * defaultAmVcores) &&
                (obj.getNumberOfExecutors() * obj.getExecutorMemory()<= defaultNumOfExecutors * defaultExecutorsMemory))){
                 defaultAmMemory = obj.getAmMemory();
                 defaultAmVcores = obj.getAmVcores();
@@ -407,7 +407,7 @@ public Response Heuristics(JobDetailDTO jobDetailDTO,
         while(itr.hasNext()) {
          JobHeuristicDetailsDTO obj = itr.next();
          
-         if(obj.getTotalSeverity().equals("LOW") && (obj.getAmMemory()> defaultAmMemory || 
+         if((obj.getTotalSeverity().equals("LOW") || obj.getTotalSeverity().equals("NONE")) && (obj.getAmMemory()> defaultAmMemory || 
                   obj.getAmVcores() > defaultAmVcores || obj.getNumberOfExecutors() > defaultNumOfExecutors || 
                   obj.getExecutorMemory() > defaultExecutorsMemory)){
              defaultAmMemory = obj.getAmMemory();
